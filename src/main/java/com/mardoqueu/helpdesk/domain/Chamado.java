@@ -34,11 +34,11 @@ public class Chamado implements Serializable{
 	private String titulo;
 	private String observacoes;
 	
-	//@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "tecnico_id")
 	private Tecnico tecnico;
 	
-	//@ManyToOne
+	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	public Chamado() {
