@@ -3,11 +3,22 @@ package com.mardoqueu.helpdesk.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.OneToMany;
+
+import com.mardoqueu.helpdesk.domain.enums.Perfil;
+
 public class Tecnico extends Pessoa{
+	
+	
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany(mappedBy = "tecnico")
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
 		super();
+		addPerfil(Perfil.CLIENTE);
+
 	}
 
 	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
