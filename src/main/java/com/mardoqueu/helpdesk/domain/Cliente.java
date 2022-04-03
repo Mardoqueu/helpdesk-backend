@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mardoqueu.helpdesk.domain.enums.Perfil;
 
 
@@ -13,6 +14,7 @@ import com.mardoqueu.helpdesk.domain.enums.Perfil;
 public class Cliente extends Pessoa{
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Chamado> chamados = new ArrayList<>();
 
