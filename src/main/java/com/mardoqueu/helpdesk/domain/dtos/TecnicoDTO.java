@@ -7,21 +7,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mardoqueu.helpdesk.domain.Pessoa;
 import com.mardoqueu.helpdesk.domain.Tecnico;
 import com.mardoqueu.helpdesk.domain.enums.Perfil;
 
-public class TecnicoDTO implements Serializable{
+public class TecnicoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
 	protected Integer id;
 	protected String nome;
-
 	protected String cpf;
-
 	protected String email;
 	protected String senha;
-
 	protected Set<Integer> perfis = new HashSet<>();
 
 	@JsonFormat(pattern = "dd/MM/yyyy") // formatar padrao de data
@@ -29,7 +27,9 @@ public class TecnicoDTO implements Serializable{
 
 	public TecnicoDTO() {
 		super();
+		addPerfil(Perfil.CLIENTE);
 	}
+
 
 	public TecnicoDTO(Tecnico obg) {
 		super();
@@ -40,6 +40,7 @@ public class TecnicoDTO implements Serializable{
 		this.senha = obg.getSenha();
 		this.perfis = obg.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obg.getDataCriacao();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -87,6 +88,10 @@ public class TecnicoDTO implements Serializable{
 	}
 
 	public void setPerfil(Perfil perfil) {
+		this.perfis.add(perfil.getCodigo());
+	}
+	
+	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
 
