@@ -11,6 +11,10 @@ import com.mardoqueu.helpdesk.domain.Tecnico;
 import com.mardoqueu.helpdesk.domain.dtos.TecnicoDTO;
 import com.mardoqueu.helpdesk.services.TecnicoService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 @RestController
 @RequestMapping(value = "/tecnicos")
 public class TecnicoResource {
@@ -25,6 +29,13 @@ public class TecnicoResource {
 		Tecnico obj = this.service.findById(id);
 		return ResponseEntity.ok().body(new TecnicoDTO(obj));
 		
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<TecnicoDTO>> findAll(){
+		List<Tecnico> list = service.findAll();
+		List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 	
 }
