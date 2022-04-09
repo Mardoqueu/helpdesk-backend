@@ -1,4 +1,4 @@
-package com.mardoqueu.helpdesk.services.exceptions;
+package com.mardoqueu.helpdesk.resources.excetions;
 
 public class ObjectnotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
