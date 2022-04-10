@@ -18,6 +18,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(value = "/tecnicos")
@@ -43,10 +45,10 @@ public class TecnicoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<TecnicoDTO> create(@RequestBody TecnicoDTO objDTO){
+	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO){
 		Tecnico newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
-		return ResponseEntity.created(null).build();
+		return ResponseEntity.created(uri).build();
 		
 	}
 	
