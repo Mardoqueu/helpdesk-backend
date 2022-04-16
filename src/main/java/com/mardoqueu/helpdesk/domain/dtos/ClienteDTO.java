@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mardoqueu.helpdesk.domain.Tecnico;
+import com.mardoqueu.helpdesk.domain.Cliente;
 import com.mardoqueu.helpdesk.domain.enums.Perfil;
 
-public class TecnicoDTO implements Serializable {
+public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
@@ -30,13 +30,13 @@ public class TecnicoDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy") // formatar padrao de data
 	protected LocalDate dataCriacao = LocalDate.now();
 
-	public TecnicoDTO() {
+	public ClienteDTO() {
 		super();
 		addPerfil(Perfil.CLIENTE);
 	}
 
 
-	public TecnicoDTO(Tecnico obg) {
+	public ClienteDTO(Cliente obg) {
 		super();
 		this.id = obg.getId();
 		this.nome = obg.getNome();
