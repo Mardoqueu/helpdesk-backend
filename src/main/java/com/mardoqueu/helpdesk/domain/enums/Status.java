@@ -6,13 +6,16 @@ public enum Status {
 	
 	private Integer codigo;
 	private String descricao;
+	
 	private Status(Integer codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -24,10 +27,10 @@ public enum Status {
 		
 		for(Status x : Status.values()) {
 			if(cod.equals(x.getCodigo())) {
-				
+				return x;
 			}
 		}
-		throw new IllegalArgumentException("Status Inválido");
+		
+		throw new IllegalArgumentException("Status inválido");
 	}
-	
 }
