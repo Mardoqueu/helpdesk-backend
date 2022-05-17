@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mardoqueu.helpdesk.domain.Pessoa;
+import com.mardoqueu.helpdesk.domain.Tecnico;
 import com.mardoqueu.helpdesk.domain.dtos.ClienteDTO;
 import com.mardoqueu.helpdesk.domain.Cliente;
 import com.mardoqueu.helpdesk.repositories.PessoaRepository;
@@ -49,6 +50,11 @@ public class ClienteService {
 	public Cliente update(Integer id, @Valid ClienteDTO objDTO) {
 		objDTO.setId(id);
 		Cliente oldObj = findById(id);
+
+		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		}	
+		
 		validaPorCPFEEmail(objDTO);
 		oldObj = new Cliente(objDTO);
 		return repository.save(oldObj);
